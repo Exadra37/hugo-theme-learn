@@ -8,24 +8,46 @@
     {{ partial "favicon.html" . }}
     <title>{{ .Title }} :: {{ .Site.Title }}</title>
 
+    {{ $empty := resources.Get "css/.empty.css" }}
+
     {{ $nucleus := resources.Get "css/nucleus.css" }}
-    {{ $fontawesome := resources.Get "css/fontawesome-all.min.css" }}
-    {{ $hybrid := resources.Get "css/hybrid.css" }}
-    {{ $featherlight := resources.Get "css/featherlight.min.css" }}
-    {{ $perfect_scrollbar := resources.Get "css/perfect-scrollbar.min.css" }}
-    {{ $auto_complete := resources.Get "css/auto-complete.css" }}
-    {{ $atom_one_dark_reasonable := resources.Get "css/atom-one-dark-reasonable.css" }}
-    {{ $mermaid := resources.Get "mermaid/mermaid.css" }}
+
+    {{ $fontawesome := $empty }}
+    {{ if .Site.Params.enableFontawesome }}
+      {{ $fontawesome = resources.Get "css/fontawesome-all.min.css" }}
+    {{ end }}
+
+    {{ $hybrid := $empty }}
+    {{ $atom_one_dark_reasonable := $empty }}
+    {{ if .Site.Params.enableClientSidetHighlight }}
+      {{ $hybrid = resources.Get "css/hybrid.css" }}
+      {{ $atom_one_dark_reasonable = resources.Get "css/atom-one-dark-reasonable.css" }}
+    {{ end }}
+
+    {{ $auto_complete := $empty }}
+    {{ $perfect_scrollbar := $empty }}
+    {{ $featherlight := $empty }}
+    {{ if .Site.Params.enableSearch }}
+      {{ $auto_complete = resources.Get "css/auto-complete.css" }}
+      {{ $perfect_scrollbar = resources.Get "css/perfect-scrollbar.min.css" }}
+      {{ $featherlight = resources.Get "css/featherlight.min.css" }}
+    {{ end }}
+
+    {{ $mermaid := $empty }}
+    {{ if .Site.Params.enableMermaid }}
+      {{ $mermaid = resources.Get "mermaid/mermaid.css" }}
+    {{ end }}
+
     {{ $theme := resources.Get "css/theme.css" }}
     {{ $hugo_theme := resources.Get "css/hugo-theme.css" }}
     {{ $shortcodes_tabs := resources.Get "css/shortcodes-tabs.css" }}
-    {{ $theme_approov := resources.Get "css/theme-approov.css" }}
+    {{ $theme_custom := resources.Get "css/theme-custom.css" }}
 
-    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $atom_one_dark_reasonable $mermaid $theme $hugo_theme $shortcodes_tabs $theme_approov | resources.Concat "bundle.css" | minify }}
+    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $mermaid $theme $hugo_theme $shortcodes_tabs $theme_custom | resources.Concat "bundle.css" | minify | fingerprint }}
+
+    <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
 
     <style amp-custom>
-      {{ $style.Content | safeCSS }}
-
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
       }

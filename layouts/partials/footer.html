@@ -57,27 +57,81 @@
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
 
-    {{ $jquery := resources.Get "js/jquery-3.3.1.min.js" }}
-    {{ $clipboard := resources.Get "js/clipboard.min.js" }}
-    {{ $perfect_scrollbar := resources.Get "js/perfect-scrollbar.min.js" }}
-    {{ $perfect_scrollbar_jquery := resources.Get "js/perfect-scrollbar.jquery.min.js" }}
-    {{ $jquery_sticky := resources.Get "js/jquery.sticky.js" }}
-    {{ $featherlight := resources.Get "js/featherlight.min.js" }}
-    {{ $html5shiv_printshiv := resources.Get "js/html5shiv-printshiv.min.js" }}
-    {{ $highlight_pack := resources.Get "js/highlight.pack.js" }}
-    {{ $modernizr_custom := resources.Get "js/modernizr.custom-3.6.0.js" }}
+    <script>
+        {{ if .Site.IsMultiLingual }}
+            var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+        {{ else }}
+            var baseurl = "{{.Site.BaseURL}}";
+        {{ end }}
+    </script>
+
+    {{ $empty := resources.Get "js/.empty.js" }}
+
+    {{ $jquery := $empty }}
+    {{ if .Site.Params.enableJquery }}
+      {{ $jquery = resources.Get "js/jquery-3.3.1.min.js" }}
+    {{ end }}
+
+    {{ $clipboard := $empty }}
+    {{ if .Site.Params.enableClipboard }}
+      {{ $clipboard = resources.Get "js/clipboard.min.js" }}
+    {{ end }}
+
+    {{ $highlight_pack := $empty }}
+    {{ if .Site.Params.enableClientSidetHighlight }}
+      {{ $highlight_pack = resources.Get "js/highlight.pack.js" }}
+    {{ end }}
+
+    {{ $jquery_sticky := $empty }}
+    {{ if .Site.Params.enableJquerySticky }}
+      {{ $jquery_sticky = resources.Get "js/jquery.sticky.js" }}
+    {{ end }}
+
+    {{ $html5shiv_printshiv := $empty }}
+    {{ if .Site.Params.enableHtml5PrintShiv }}
+      {{ $html5shiv_printshiv = resources.Get "js/html5shiv-printshiv.min.js" }}
+    {{ end }}
+
+    {{ $modernizr_custom := $empty }}
+    {{ if .Site.Params.enableModernizrCustom }}
+      {{ $modernizr_custom = resources.Get "js/modernizr.custom-3.6.0.js" }}
+    {{ end }}
+
+    {{ $mermaid := $empty }}
+    {{ if .Site.Params.enableMermaid }}
+      {{ $mermaid = resources.Get "mermaid/mermaid.js" }}
+    {{ end }}
+
     {{ $learn := resources.Get "js/learn.js" }}
     {{ $hugo_learn := resources.Get "js/hugo-learn.js" }}
 
-    {{ $mermaid := resources.Get "mermaid/mermaid.js" }}
+    {{ $search := $empty }}
+    {{ $lunr := $empty }}
+    {{ $auto_complete := $empty }}
+    {{ $perfect_scrollbar := $empty }}
+    {{ $perfect_scrollbar_jquery := $empty }}
+    {{ $featherlight := $empty }}
+    {{ if .Site.Params.enableSearch }}
+      {{ $featherlight = resources.Get "js/featherlight.min.js" }}
+      {{ $lunr = resources.Get "js/lunr.min.js" }}
+      {{ $auto_complete = resources.Get "js/auto-complete.js" }}
+      {{ $search = resources.Get "js/search.js" }}
+      {{ $perfect_scrollbar = resources.Get "js/perfect-scrollbar.min.js" }}
+      {{ $perfect_scrollbar_jquery = resources.Get "js/perfect-scrollbar.jquery.min.js" }}
+    {{ end }}
 
-    {{ $scripts := slice $jquery $clipboard $perfect_scrollbar $perfect_scrollbar_jquery $jquery_sticky $featherlight $html5shiv_printshiv $highlight_pack $modernizr_custom $learn $hugo_learn $mermaid | resources.Concat "bundle.js" | minify }}
+    {{ $scripts := slice $jquery $clipboard $perfect_scrollbar $perfect_scrollbar_jquery $jquery_sticky $featherlight $html5shiv_printshiv $highlight_pack $modernizr_custom $learn $hugo_learn $mermaid $lunr $auto_complete $search | resources.Concat "bundle.js" | minify | fingerprint }}
 
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="{{ $scripts.Permalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>
+
     <script>
-        {{ $scripts.Content | safeJS }}
+      {{ if .Site.Params.enableHighlight }}
         hljs.initHighlightingOnLoad();
+      {{ end }}
+
+      {{ if .Site.Params.enableMermaid }}
         mermaid.initialize({ startOnLoad: true });
+      {{ end }}
     </script>
 
     {{ partial "custom-footer.html" . }}

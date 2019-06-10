@@ -59,7 +59,9 @@ images.each(function(index){
 
 // Stick the top to the top of the screen when  scrolling
 $(document).ready(function(){
-  $("#top-bar").sticky({topSpacing:0, zIndex: 1000});
+  if ( $.isFunction($.fn.sticky) ) {
+    $("#top-bar").sticky({topSpacing:0, zIndex: 1000});
+  }
 });
 
 
