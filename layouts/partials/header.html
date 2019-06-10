@@ -8,41 +8,22 @@
     {{ partial "favicon.html" . }}
     <title>{{ .Title }} :: {{ .Site.Title }}</title>
 
-    {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+    {{ $nucleus := resources.Get "css/nucleus.css" }}
+    {{ $fontawesome := resources.Get "css/fontawesome-all.min.css" }}
+    {{ $hybrid := resources.Get "css/hybrid.css" }}
+    {{ $featherlight := resources.Get "css/featherlight.min.css" }}
+    {{ $perfect_scrollbar := resources.Get "css/perfect-scrollbar.min.css" }}
+    {{ $auto_complete := resources.Get "css/auto-complete.css" }}
+    {{ $atom_one_dark_reasonable := resources.Get "css/atom-one-dark-reasonable.css" }}
+    {{ $mermaid := resources.Get "mermaid/mermaid.css" }}
+    {{ $theme := resources.Get "css/theme.css" }}
+    {{ $hugo_theme := resources.Get "css/hugo-theme.css" }}
+    {{ $shortcodes_tabs := resources.Get "css/shortcodes-tabs.css" }}
+    {{ $theme_approov := resources.Get "css/theme-approov.css" }}
 
-<!--
-    <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/hybrid.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/featherlight.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/atom-one-dark-reasonable.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/hugo-theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/shortcodes-tabs.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    {{with .Site.Params.themeVariant}}
-      <link href="{{(printf "css/theme-%s.css" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    {{end}} -->
+    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $atom_one_dark_reasonable $mermaid $theme $hugo_theme $shortcodes_tabs $theme_approov | resources.Concat "bundle.css" | minify }}
 
-    <script src="{{"js/jquery-3.3.1.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-
-
-    {{ $nucleus := resources.Get "css/nucleus.css" | relURL }}
-    {{ $fontawesome := resources.Get "css/fontawesome-all.min.css" | relURL }}
-    {{ $hybrid := resources.Get "css/hybrid.css" | relURL }}
-    {{ $featherlight := resources.Get "css/featherlight.min.css" | relURL }}
-    {{ $perfect_scrollbar := resources.Get "css/perfect-scrollbar.min.css" | relURL }}
-    {{ $auto_complete := resources.Get "css/auto-complete.css" | relURL }}
-    {{ $atom_one_dark_reasonable := resources.Get "css/atom-one-dark-reasonable.css" | relURL }}
-    {{ $theme := resources.Get "css/theme.css" | relURL }}
-    {{ $hugo_theme := resources.Get "css/hugo-theme.css" | relURL }}
-    {{ $shortcodes_tabs := resources.Get "css/shortcodes-tabs.css" | relURL }}
-    {{ $theme_approov := resources.Get "css/theme-approov.css" | relURL }}
-
-    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $atom_one_dark_reasonable $theme $hugo_theme $shortcodes_tabs $theme_approov | resources.Concat "bundle.css" | minify }}
-
-    </style amp-custom>
+    <style amp-custom>
       {{ $style.Content | safeCSS }}
 
       :root #header + #content > #left > #rlblock_left{
