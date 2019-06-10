@@ -1,0 +1,70 @@
+pre {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+
+.shortcodes-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin:auto;
+  background: #e5e5e5;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+
+.shortcodes-tabs pre {
+  margin: 0;
+}
+
+.shortcodes-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.shortcodes-label {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  margin: 0.1rem 0.1rem 0 0.1rem;
+  background: #e5e5e5;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  color: #7f7f7f;
+  transition: background 0.1s, color 0.1s;
+}
+.shortcodes-label:hover {
+  background: #d8d8d8;
+}
+.shortcodes-label:active {
+  background: #ccc;
+}
+.shortcodes-input:focus + .shortcodes-label {
+  z-index: 1;
+}
+.shortcodes-input:checked + .shortcodes-label {
+  background: #fff;
+  color: #000;
+}
+@media (min-width: 600px) {
+  .shortcodes-label {
+    width: auto;
+  }
+}
+.shortcodes-panel {
+  display: none;
+  padding: 1rem;
+  background: #fff;
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .shortcodes-panel {
+    order: 99;
+  }
+}
+
+.shortcodes-input:checked + .shortcodes-label + .shortcodes-panel {
+  display: block;
+}
+
+.shortcodes-input:checked:not(:checked) + .shortcodes-label + .shortcodes-panel {
+  display: none;
+}
