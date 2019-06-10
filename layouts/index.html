@@ -4,7 +4,20 @@
 </span>
 
 {{if .Site.Home.Content }}
-  {{.Site.Home.Content}}
+  {{ if .Params.displayContent }}
+    {{.Site.Home.Content}}
+  {{ end }}
+  <section class="home-section">
+      {{ range (where .Site.Pages "Type" "tile") }}
+      <div class="home-section-tile">
+        <a href="{{ if .Params.ExternalLink }} {{ .Params.ExternalLink }} {{ else }} {{ .Permalink }} {{ end }}">
+          <i class="{{ .Params.Icon }} icon"></i>
+          <h3 class="mb-3">{{ .Title }}</h3>
+          <p class="mb-0">{{ .Params.Description }}</p>
+        </a>
+      </div>
+      {{ end }}
+  </section>
 {{else}}
 	{{if eq .Site.Language.Lang "fr"}}
 		<h1>Personaliser la page d'accueil</h1>

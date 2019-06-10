@@ -1,0 +1,22 @@
+{{ .Page.Scratch.Add "tabset-counter" 1 }}
+{{ $tab_set_id := .Get "name" | default (printf "tabset-%s-%d" (.Page.RelPermalink) (.Page.Scratch.Get "tabset-counter") ) | anchorize }}
+{{ $tabs := .Scratch.Get "tabs" }}
+
+{{ if .Inner }}{{/* We don't use the inner content, but Hugo will complain if we don't reference it. */}}{{ end }}
+
+<!-- Html and CSS inspired on https://kyusuf.com/post/completely-css-tabs/ -->
+<div id="{{ $tab_set_id }}" class="shortcodes-tabs m-2">
+
+  {{ range $i, $e := $tabs }}
+    {{ $id := printf "%s-%d" $tab_set_id $i }}
+    <input name="{{ $tab_set_id }}" type="radio" id="{{ $id }}" class="shortcodes-input {{ if (eq $i 0) }}shortcodes-active{{ end }}" {{ if (eq $i 0) }}checked="checked"{{ end }}/>
+    <label for="{{ $id }}" class="shortcodes-label {{ if (eq $i 0) }}shortcodes-active{{ end }}">{{ trim .name " " }}</label>
+    <div class="shortcodes-panel {{ if (eq $i 0) }}shortcodes-active{{ end }}">
+      {{ with .content }}
+        {{ . | safeHTML }}
+      {{ end }}
+    </div>
+
+  {{ end }}
+
+</div>

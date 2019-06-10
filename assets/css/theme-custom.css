@@ -122,14 +122,52 @@ a:hover {
   padding: 0rem !important;
 }
 
-/*#TableOfContents ul li {
-    padding-left: 0.5rem!important;
-}*/
-
 #body .nav-shortcodes-tabs {
     position: relative;
 }
 
 #sidebar #shortcuts h3 {
+  font-weight: bold;
+}
+
+.home-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  word-break: break-word;
+}
+
+.home-section .icon {
+  font-size: 3rem;
+  color: #111111;
+}
+
+.home-section-tile {
+  display: inline-flex;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  max-width: 20rem;
+  height: 20rem;
+  margin: 1rem;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.home-section-tile h3 {
+  font-size: 2rem
+}
+
+.home-section-tile p {
+  font-size: 1.5rem;
+  color: #666666;
+}
+
+.home-section-tile p:hover {
+  text-decoration: none
+}
+
+h1, h2, h3, h4, h5, h6 {
+  word-break: break-word;
   font-weight: bold;
 }
