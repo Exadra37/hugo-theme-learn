@@ -67,8 +67,8 @@ $(document).ready(function(){
 
 jQuery(document).ready(function() {
   // Add link button for every
-  var text, clip = new ClipboardJS('.anchor');
-  $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
+  $("h1,h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
+  //$("#body-inner h1,h2,h3,h4,h5,h6").append(function(index, html){
     var element = $(this);
     var url = encodeURI(document.location.origin + document.location.pathname);
     var link = url + "#"+element[0].id;
@@ -78,6 +78,7 @@ jQuery(document).ready(function() {
     ;
   });
 
+  var text, clip = new ClipboardJS('.anchor');
   $(".anchor").on('mouseleave', function(e) {
     $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
   });
@@ -86,6 +87,7 @@ jQuery(document).ready(function() {
       e.clearSelection();
       $(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
   });
+
   $('code.language-mermaid').each(function(index, element) {
     var content = $(element).html().replace(/&amp;/g, '&');
     $(element).parent().replaceWith('<div class="mermaid" align="center">' + content + '</div>');

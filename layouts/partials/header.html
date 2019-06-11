@@ -43,11 +43,11 @@
     {{ $shortcodes_tabs := resources.Get "css/shortcodes-tabs.css" }}
     {{ $theme_custom := resources.Get "css/theme-custom.css" }}
 
-    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $mermaid $theme $hugo_theme $shortcodes_tabs $theme_custom | resources.Concat "bundle.css" | minify | fingerprint }}
+    {{ $style := slice $nucleus $fontawesome $hybrid $featherlight $perfect_scrollbar $auto_complete $atom_one_dark_reasonable $mermaid $theme $hugo_theme $shortcodes_tabs $theme_custom | resources.Concat "bundle.css" | fingerprint }}
 
     <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
 
-    <style amp-custom>
+    <style>
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
       }
@@ -112,14 +112,11 @@
           <div id="chapter">
         {{ end }}
         <div id="body-inner">
+          <section id="body-inner-title">
           {{if and (not .IsHome) (not .Params.chapter) }}
-            <h1>
-              {{ if eq .Kind "taxonomy" }}
-                {{.Kind}} ::
-              {{ end }}
-              {{.Title}}
-            </h1>
+            <h1>{{ if eq .Kind "taxonomy" }}{{.Kind}} :: {{ end }}{{- .Title -}}</h1>
           {{end}}
+          </section>
 
         {{define "breadcrumb"}}
           {{$parent := .page.Parent }}
