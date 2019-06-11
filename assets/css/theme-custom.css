@@ -7,12 +7,12 @@
     --MAIN-LINK-HOVER-color:#167ad0; /* Color of hovered links */
     --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
 
-    --MENU-HEADER-BG-color:#020252; /* Background color of menu header */
-    --MENU-HEADER-BORDER-color:#ce0d96; /*Color of menu header border */
+    --MENU-HEADER-BG-color:#111130; /* Background color of menu header */
+    --MENU-HEADER-BORDER-color:#ce0396; /*Color of menu header border */
 
     --MENU-SEARCH-BG-color:#fff; /* Search field background color (by default borders + icons) */
     --MENU-SEARCH-BOX-color: #999999; /* Override search field border color */
-    --MENU-SEARCH-BOX-ICONS-color: #ce0d96; /* Override search field icons color */
+    --MENU-SEARCH-BOX-ICONS-color: #ce0396; /* Override search field icons color */
 
     --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its childs */
     --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
@@ -28,7 +28,8 @@
 
 body {
     color: var(--MAIN-TEXT-color) !important;
-    background-color: var(--BODY-BACKGROUND-color)
+    background-color: var(--BODY-BACKGROUND-color);
+    font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
 }
 
 textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
@@ -168,7 +169,12 @@ a:hover {
   text-decoration: none
 }
 
+#list-section-content img, #list-section-content table, .notices {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
 h1, h2, h3, h4, h5, h6 {
   word-break: break-word;
   font-weight: bold;
+  font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
 }

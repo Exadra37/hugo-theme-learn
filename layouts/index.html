@@ -5,7 +5,9 @@
 
 {{if .Site.Home.Content }}
   {{ if .Params.displayContent }}
+  <section id="home-section-content">
     {{.Site.Home.Content}}
+  </section>
   {{ end }}
   <section class="home-section">
       {{ range (where .Site.Pages "Type" "tile") }}

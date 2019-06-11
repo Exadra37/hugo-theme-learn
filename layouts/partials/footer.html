@@ -120,7 +120,9 @@
       {{ $perfect_scrollbar_jquery = resources.Get "js/perfect-scrollbar.jquery.min.js" }}
     {{ end }}
 
-    {{ $scripts := slice $jquery $clipboard $perfect_scrollbar $perfect_scrollbar_jquery $jquery_sticky $featherlight $html5shiv_printshiv $highlight_pack $modernizr_custom $learn $hugo_learn $mermaid $lunr $auto_complete $search | resources.Concat "bundle.js" | minify | fingerprint }}
+    {{ $theme_custom := resources.Get "js/theme-custom.js" }}
+
+    {{ $scripts := slice $jquery $clipboard $perfect_scrollbar $perfect_scrollbar_jquery $jquery_sticky $featherlight $html5shiv_printshiv $highlight_pack $modernizr_custom $learn $hugo_learn $mermaid $lunr $auto_complete $search $theme_custom | resources.Concat "bundle.js" | minify | fingerprint }}
 
     <script type="text/javascript" src="{{ $scripts.Permalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>
 
