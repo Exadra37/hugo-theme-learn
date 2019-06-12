@@ -130,10 +130,25 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
 }
 
+#chapter #list-section-content h1 {
+  text-align: center;
+}
+
+
 #list-section-content h1 {
   text-align: left;
   font-size: 3rem;
   margin-top: 4rem;
+}
+
+@media only all and (max-width: 47.938em) {
+  #body-inner-title h1{
+      font-size: 2rem;
+  }
+
+  #list-section-content h1 {
+      font-size: 2rem;
+  }
 }
 
 .anchor {
@@ -183,6 +198,16 @@ h1, h2, h3, h4, h5, h6 {
 .home-section-tile p {
   font-size: 1.5rem;
   color: #666666;
+}
+
+@media only all and (max-width: 47.938em) {
+  .home-section-tile h3 {
+    font-size: 1.8rem
+  }
+
+  .home-section-tile p {
+    font-size: 1rem
+  }
 }
 
 .home-section-tile p:hover {
