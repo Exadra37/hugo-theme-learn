@@ -4,11 +4,6 @@
 </span>
 
 {{ if .Site.Home.Content }}
-  {{ if .Params.displayContent }}
-  <section id="home-section-content">
-    {{ .Site.Home.Content }}
-  </section>
-  {{ end }}
   <section class="tile-group">
     {{ range .Site.Pages }}
       {{ if .Params.tile.homeDisplay }}
@@ -16,6 +11,11 @@
       {{ end }}
     {{ end }}
   </section>
+  {{ if .Params.displayContent }}
+  <section id="home-section-content">
+    {{ .Site.Home.Content }}
+  </section>
+  {{ end }}
 {{else}}
 	{{if eq .Site.Language.Lang "fr"}}
 		<h1>Personaliser la page d'accueil</h1>
