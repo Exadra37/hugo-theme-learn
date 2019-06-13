@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.8rem;
 }
 
-.home-section {
+.tile-group {
   position: relative;
   display: block;
   width: 100%;
@@ -176,41 +176,41 @@ h1, h2, h3, h4, h5, h6 {
   word-break: break-word;
 }
 
-.home-section .icon {
+.tile-group .icon {
   font-size: 3rem;
   color: #111111;
 }
 
-.home-section-tile {
+.tile-content {
   display: inline-flex;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  max-width: 20rem;
+  width: 20rem;
   height: 20rem;
   margin: 1rem;
   padding: 3rem 1rem;
   text-align: center;
 }
 
-.home-section-tile h3 {
+.tile-content h3 {
   font-size: 2rem
 }
 
-.home-section-tile p {
+.tile-content p {
   font-size: 1.5rem;
   color: #666666;
 }
 
 @media only all and (max-width: 47.938em) {
-  .home-section-tile h3 {
+  .tile-content h3 {
     font-size: 1.8rem
   }
 
-  .home-section-tile p {
+  .tile-content p {
     font-size: 1rem
   }
 }
 
-.home-section-tile p:hover {
+.tile-content p:hover {
   text-decoration: none
 }
 

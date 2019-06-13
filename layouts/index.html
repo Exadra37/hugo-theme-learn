@@ -9,16 +9,12 @@
     {{ .Site.Home.Content }}
   </section>
   {{ end }}
-  <section class="home-section">
-      {{ range (where .Site.Pages "Type" "tile") }}
-      <div class="home-section-tile">
-        <a href="{{ if .Params.ExternalLink }} {{ .Params.ExternalLink }} {{ else }} {{ .Permalink }} {{ end }}">
-          <i class="{{ .Params.Icon }} icon"></i>
-          <h3 class="mb-3">{{ .Title }}</h3>
-          <p class="mb-0">{{ .Params.Description }}</p>
-        </a>
-      </div>
+  <section class="tile-group">
+    {{ range .Site.Pages }}
+      {{ if .Params.tile.homeDisplay }}
+        {{ partial "tile.html" . }}
       {{ end }}
+    {{ end }}
   </section>
 {{else}}
 	{{if eq .Site.Language.Lang "fr"}}

@@ -1,0 +1,7 @@
+<div class="tile-content">
+  <a href="{{ if .Params.tile.link }} {{ .Params.tile.link }} {{ else }} {{ .Permalink }} {{ end }}">
+    <i class="{{ if .Params.tile.icon }} {{ .Params.tile.icon }} {{ else }} {{ .Params.icon }} {{ end }} icon"></i>
+    <h3 >{{ if .Params.tile.title }} {{ .Params.tile.title }} {{ else }} {{ .Title }} {{ end }}</h3>
+    <p>{{ if .Params.tile.description }} {{ .Params.tile.description }} {{ else }} {{ .Params.Description }} {{ end }}</p>
+  </a>
+</div>
