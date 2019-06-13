@@ -231,7 +231,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: auto;
 }
 
-#sidebar #TableOfContents ul li {
+#sidebar ul li {
   list-style-type: square;
   color: #ce0396;
 }
@@ -241,7 +241,7 @@ h1, h2, h3, h4, h5, h6 {
   text-indent: 0;
 }
 
-#sidebar #TableOfContents ul li li{
+#sidebar ul li li{
   list-style-type: disc;
   color: #ce0396;
 }

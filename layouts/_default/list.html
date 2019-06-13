@@ -6,6 +6,19 @@
   </section>
 {{end}}
 
+{{ if .Params.displayTiles }}
+  {{ range (where .Page.Pages "tileGroup"  .Params.belongsToTileGroup ) }}
+  <div class="home-section-tile">
+    <a href="{{ if .Params.ExternalLink }} {{ .Params.ExternalLink }} {{ else }} {{ .Permalink }} {{ end }}">
+      <i class="{{ .Params.Icon }} icon"></i>
+      <h3 class="mb-3">{{ .Title }}</h3>
+      <p class="mb-0">{{ .Params.Description }}</p>
+    </a>
+  </div>
+  {{ end }}
+{{ end }}
+
+
 {{ if or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") }}
 <ul>
 	{{ range .Pages }}
