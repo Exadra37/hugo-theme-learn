@@ -93,11 +93,20 @@ jQuery(document).ready(function() {
     $('#sidebar .highlightable').perfectScrollbar();
     setMenuHeight();
 
+    // Adds an overlay on top of the content when we click to make the side bar menu visible
     jQuery('#overlay').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
         sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
 
         return false;
+    });
+
+    // removes the overlay on top of the content when we click in the side bar menu
+    jQuery('#sidebar').on('click', function() {
+        jQuery(document.body).toggleClass('sidebar-hidden');
+        sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
+
+        return true;
     });
 
     jQuery('[data-sidebar-toggle]').on('click', function() {

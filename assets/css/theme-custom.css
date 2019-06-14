@@ -36,12 +36,44 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     box-shadow: none;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+  word-break: break-word;
+  font-weight: bold;
+  font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
+}
+
 h2, h3, h4, h5 {
     color: var(--MAIN-TITLES-TEXT-color) !important;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+
 a {
-    color: var(--MAIN-LINK-color);
+  color: var(--MAIN-LINK-color);
 }
 
 .anchor {
@@ -121,22 +153,18 @@ a:hover {
 
 #sidebar #shortcuts h3 {
   font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
+  font-weight: normal;
   color: #ce0396 !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  word-break: break-word;
-  font-weight: bold;
-  font-family: "Helvetica", "Tahoma", "Geneva", "Arial", "sans-serif";
+  padding-left: 0rem;
 }
 
 #chapter #list-section-content h1 {
   text-align: center;
 }
 
-#list-section-content h1 {
+#list-section-content h1, #single-page-content h1 {
   text-align: left;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-top: 4rem;
 }
 
@@ -156,32 +184,46 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 .anchor {
   visibility: visible;
-  line-height: 4.8rem;
+  line-height: 4rem;
   font-size: 1rem;
 }
 
 h2 .anchor {
   visibility: visible;
-  line-height: 3.2rem;
-  font-size: 0.8rem;
+  line-height: 2.2rem;
+  font-size: 0.7rem;
 }
 
 h3 .anchor {
   visibility: visible;
-  line-height: 2.4rem;
-  font-size: 0.8rem;
+  line-height: 2.1rem;
+  font-size: 0.6rem;
 }
 
 h4 .anchor {
   visibility: visible;
-  line-height: 1.7rem;
-  font-size: 0.7rem;
+  line-height: 1.6rem;
+  font-size: 0.6rem;
 }
 
 h5 .anchor {
   visibility: visible;
   line-height: 1.2rem;
   font-size: 0.5rem;
+}
+
+h6 .anchor {
+  visibility: visible;
+  line-height: 1.2rem;
+  font-size: 0.4rem;
+}
+
+#body-inner-title h1 {
+  font-size: 3rem
+}
+
+#body-inner-title h1 i {
+  display: none
 }
 
 .tile-group {
@@ -225,13 +267,21 @@ h5 .anchor {
   .tile-content p {
     font-size: 1rem
   }
+
+  #body-inner-title h1 {
+    font-size: 2.6rem
+  }
 }
 
 .tile-content p:hover {
   text-decoration: none
 }
 
-#list-section-content img, #list-section-content table, .notices {
+#list-section-content img,
+#list-section-content table,
+#single-page-content img,
+#single-page-content table,
+.notices {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
@@ -267,6 +317,16 @@ h5 .anchor {
   padding-left: 1rem;
 }
 
+#top-bar {
+  position: fixed;
+  top: 0;
+  left: 300px;
+  width: 100%;
+  z-index: 99999;
+  background-color: #dddddd;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
 #top-bar a {
   color: #999;
 }
@@ -277,4 +337,28 @@ h5 .anchor {
 
 #sidebar .highlightable {
   padding-left: 0.5rem;
+}
+
+#sidebar #shortcuts a, #sidebar #prefooter a, #sidebar #footer {
+  padding-left: 0rem;
+}
+
+@media only all and (max-width: 59.938em) {
+#top-bar {
+    left: 230px;
+  }
+}
+
+@media only all and (max-width: 47.938em) {
+  #top-bar {
+    left: 0px;
+  }
+
+  #sidebar {
+    top:3rem;
+  }
+
+  #body .padding {
+    padding-top: 4rem;
+  }
 }
